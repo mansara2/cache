@@ -1,0 +1,70 @@
+{% extends "boilerplate.html" %}
+{% block bodyblock %}
+ <div class= "inline-div-block">
+<h3>{{question.description}}</h3><br>
+
+  
+	<link rel="stylesheet" type="text/css" href="/css/processorcanvas.css">
+<div class ="abs">
+	<div class="inline-div well">
+    <div class="inline-div-block">
+	<div class ="div1A">
+	{{question.A1}}{{question.A1i}}{{question.SharedA}}<br>
+	{{question.B1}}{{question.B1i}}{{question.SharedB}}<br>
+	{{question.C1}}{{question.C1i}}{{question.SharedC}}
+	</div>
+	<div class ="div2A">
+	{{question.A2}}{{question.A2i}}{{question.SharedA2}}<br>
+	{{question.B2}}{{question.B2i}}{{question.SharedB2}}<br>
+	{{question.C2}}{{question.C2i}}{{question.SharedC2}}
+	</div>
+	<div class ="div3A">
+	{{question.A3}}{{question.A3i}}{{question.SharedA3}}<br>
+	{{question.B3}}{{question.B3i}}{{question.SharedB3}}<br>
+	{{question.C3}}{{question.C3i}}{{question.SharedC3}}
+	</div>
+	<div class ="divMA">
+	{{question.A4}}{{question.A4i}}<br><br>
+	{{question.B4}}{{question.B4i}}<br><br>
+	{{question.C4}}{{question.C4i}}
+	</div>
+    <p><canvas style ="z-index :-1; position= absolute;" canvas id="myCanvas" width="800" height="400" style="border:1px solid white;">
+	Your browser does not support the HTML5 canvas tag.
+	</canvas></p>
+ 
+    
+  <div class="div-block">
+  <p><input class="nogap numeric" type="text" maxlength="5" id="answer"/></p>
+  <p id="correct"></p>
+  </div>
+  <div class="inline-div">
+    <button id="submit" class="btn btn-large disabled">Submit</button>
+    <span id="score"></span>
+	</div>
+	</div>
+	</div>
+</div>
+</div>
+{% endblock %}
+{% block jsblock %}
+  <script src="/js/numeric.js"></script>
+	<script type="text/javascript" src="/js/processorcanvas.js">
+	</script>
+  <script type="text/javascript">
+    $(document).ready(function() {	      
+      validate_s($('#answer'));
+      $("#answer").width(80);		
+    });
+    
+    get_answer = function() {
+      return $("#answer").attr('value');
+    }
+    function correct(json_rdata) {
+      $("#correct").html("Answer: " + json_rdata["wanted"]);
+    }
+
+    function canSubmit() {
+       return $("#answer").attr('value').length > 0;
+    }
+  </script>
+{% endblock %}

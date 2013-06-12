@@ -1,0 +1,13 @@
+
+
+		body {background-color:#99FF99}
+			.error {color:red; font-size:30px;}
+			.correct{color:green; font-size:30px;}
+			h2{color: orange}
+			p{color: blue}
+			button{background-color : lightgreen; border:5px solid teal;}
+			input.submission{border:5px solid white;
+			background-color : teal; 
+			font-size :20px;}
+			container{position:absolute;
+left:-20px;}

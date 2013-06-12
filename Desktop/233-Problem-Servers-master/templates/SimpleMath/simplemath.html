@@ -1,0 +1,44 @@
+{% extends "boilerplate.html" %}
+{% block bodyblock %}
+  <div class="inline-div-block">
+{{question.description}}</br>
+<i>Assume all swags are ints</i></br>
+  <div class="inline-div well">
+    <div class="inline-div-block">
+    <p>input answer</p>
+    <p><input class="nogap numeric" type="text" maxlength="5" id="numbs"/></p>
+    </div>
+    <div class="div-block">
+    <p>input answer</p>
+    <p><input class="nogap numeric" type="text" maxlength="5" id="hella"/></p>
+    </div>
+    <p id="correct"></p>
+  </div>
+  <div class="inline-div">
+    <button id="submit" class="btn btn-large disabled">Submit</button>
+    <span id="score"></span>
+  </div>
+  </div>
+{% endblock %}
+{% block jsblock %}
+  <script src="/js/numeric.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {	      
+      validate_d($('#numbs'));
+      validate_d($('#hella'));
+      $("#numbs").width(80);	
+      $("#hella").width(80);		
+    });
+    
+    get_answer = function() {
+      return $("#numbs").attr('value') + ',' + $("#hella").attr('value');
+    }
+    function correct(json_rdata) {
+      $("#correct").html("Answer: " + json_rdata["wanted"]);
+    }
+
+    function canSubmit() {
+       return ($("#numbs").attr('value').length > 0) && ($("#hella").attr('value').length > 0);
+    }
+  </script>
+{% endblock %}
